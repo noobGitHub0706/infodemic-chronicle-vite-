@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { TRANSFER_TEST_A, TRANSFER_TEST_B } from '../data/transferTests';
+import { TRANSFER_TEST_SETS } from '../data/transferTests';
 import { SNSPostCard } from './common/SNSPostCard';
 import { shuffle } from '../utils';
 
@@ -7,8 +7,8 @@ export const TransferTest = ({ testSet, isPreTest, onComplete }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [responses, setResponses] = useState({});
     const [showIntro, setShowIntro] = useState(true);
-    
-    const questions = testSet === 'A' ? TRANSFER_TEST_A : TRANSFER_TEST_B;
+
+    const questions = TRANSFER_TEST_SETS[testSet];
     const currentQuestion = questions[currentIndex];
     const progress = ((currentIndex + 1) / questions.length) * 100;
     
@@ -17,7 +17,8 @@ export const TransferTest = ({ testSet, isPreTest, onComplete }) => {
             ...responses,
             [currentQuestion.id]: {
                 rating: value,
-                technique: currentQuestion.technique,
+                manipulative: currentQuestion.manipulative,
+                techniques: currentQuestion.techniques,
                 style: currentQuestion.style,
                 topic: currentQuestion.topic,
                 timestamp: new Date().toISOString()

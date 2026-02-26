@@ -1,10 +1,64 @@
 import { useState } from 'react';
 import { TECHNIQUES } from '../data/techniques';
 import { TechniqueTag } from './common/TechniqueTag';
+import { INTRO_NARRATIVE } from '../data/narrative';
+import { DialogueBox } from './common/DialogueBox';
 
 export const Introduction = ({ onStart }) => {
     const [showTechniques, setShowTechniques] = useState(false);
+    const [narrativeStep, setNarrativeStep] = useState(0);
 
+    const opening = INTRO_NARRATIVE.opening;
+    const isNarrativeActive = narrativeStep < opening.length;
+
+    // --- オープニングシーケンス ---
+    if (isNarrativeActive) {
+        return (
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="max-w-2xl w-full animate-fade-in">
+                    <div className="glass rounded-3xl p-8 md:p-10">
+                        <div className="flex justify-between items-center mb-6">
+                            <div className="text-sm font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                                インフォデミック・クロニクル
+                            </div>
+                            <button
+                                onClick={() => setNarrativeStep(opening.length)}
+                                className="text-xs text-gray-500 hover:text-gray-300 transition-colors px-3 py-1 rounded-full bg-white/5 hover:bg-white/10"
+                            >
+                                スキップ →
+                            </button>
+                        </div>
+
+                        <div className="min-h-36">
+                            <DialogueBox dialogue={opening[narrativeStep]} />
+                        </div>
+
+                        <div className="flex items-center justify-between mt-6">
+                            <div className="flex gap-1.5">
+                                {opening.map((_, i) => (
+                                    <div
+                                        key={i}
+                                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                                            i === narrativeStep ? 'bg-indigo-400 w-6' :
+                                            i < narrativeStep ? 'bg-indigo-700 w-3' : 'bg-white/20 w-3'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <button
+                                onClick={() => setNarrativeStep(prev => prev + 1)}
+                                className="btn-primary text-white font-bold py-3 px-8 rounded-2xl"
+                            >
+                                {narrativeStep < opening.length - 1 ? '次へ →' : '続ける →'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // --- メインコンテンツ（技法ブリーフィング挿入済み）---
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
             <div className="max-w-2xl w-full animate-fade-in">
@@ -67,7 +121,10 @@ export const Introduction = ({ onStart }) => {
                             </div>
                         </div>
 
-                        <button 
+                        {/* 技法ブリーフィング前セリフ */}
+                        <DialogueBox dialogue={INTRO_NARRATIVE.techniqueBriefingIntro} />
+
+                        <button
                             onClick={() => setShowTechniques(!showTechniques)}
                             className="w-full text-left bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-colors"
                         >
@@ -83,7 +140,7 @@ export const Introduction = ({ onStart }) => {
                         {showTechniques && (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 animate-fade-in">
                                 {Object.values(TECHNIQUES).map(tech => (
-                                    <div 
+                                    <div
                                         key={tech.id}
                                         className={`${tech.bgColor} border ${tech.borderColor} rounded-xl p-4`}
                                     >
@@ -94,6 +151,9 @@ export const Introduction = ({ onStart }) => {
                                 ))}
                             </div>
                         )}
+
+                        {/* 技法ブリーフィング後セリフ */}
+                        <DialogueBox dialogue={INTRO_NARRATIVE.techniqueBriefingOutro} />
                     </div>
 
                     <button

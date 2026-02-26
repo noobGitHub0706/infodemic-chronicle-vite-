@@ -5,11 +5,14 @@ import { TARGETS } from '../data/targets';
 import { TechniqueTag } from './common/TechniqueTag';
 import { SNSPostCard } from './common/SNSPostCard';
 import { SpreadVisualization } from './common/SpreadVisualization';
+import { DialogueBox } from './common/DialogueBox';
+import { STAGE3_NARRATIVE } from '../data/narrative';
 import { shuffle, randomBetween } from '../utils';
 
 export const Stage3 = ({ stage1Data, onComplete }) => {
     const [round, setRound] = useState(0);
     const [phase, setPhase] = useState('target'); // target, post, result, criticism, suspended
+    const [stageStartShown, setStageStartShown] = useState(false);
     const [selectedTarget, setSelectedTarget] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null);
     const [followers, setFollowers] = useState(100);
@@ -163,6 +166,36 @@ export const Stage3 = ({ stage1Data, onComplete }) => {
         });
     };
 
+    // --- stageStart 画面 ---
+    if (!stageStartShown) {
+        return (
+            <div className="min-h-screen p-4 flex items-center justify-center">
+                <div className="max-w-2xl w-full animate-fade-in">
+                    <div className="glass rounded-3xl p-6 md:p-8">
+                        <div className="flex justify-end mb-2">
+                            <button
+                                onClick={() => setStageStartShown(true)}
+                                className="text-xs text-gray-500 hover:text-gray-300 transition-colors px-3 py-1 rounded-full bg-white/5 hover:bg-white/10"
+                            >
+                                スキップ →
+                            </button>
+                        </div>
+                        <div className="text-center mb-4">
+                            <span className="text-sm text-gray-400 bg-white/5 px-3 py-1 rounded-full">Stage 2: インフルエンサー体験</span>
+                        </div>
+                        <DialogueBox dialogue={STAGE3_NARRATIVE.stageStart} />
+                        <button
+                            onClick={() => setStageStartShown(true)}
+                            className="w-full mt-4 btn-primary text-white font-bold py-4 rounded-2xl text-lg"
+                        >
+                            潜入を開始する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen p-4 flex flex-col">
             {/* アカウント凍結画面 */}
@@ -221,6 +254,9 @@ export const Stage3 = ({ stage1Data, onComplete }) => {
                                     <p className="text-2xl font-bold text-red-400">0%</p>
                                 </div>
                             </div>
+
+                            {/* 凍結ナラティブ */}
+                            <DialogueBox dialogue={STAGE3_NARRATIVE.accountSuspended} />
 
                             {/* 学びのポイント */}
                             <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-6 mb-8 text-left">
@@ -285,6 +321,7 @@ export const Stage3 = ({ stage1Data, onComplete }) => {
                     {/* ターゲット選択 */}
                     {phase === 'target' && (
                         <div className="animate-fade-in">
+                            <DialogueBox dialogue={STAGE3_NARRATIVE.roundIntros[round]} />
                             <div className="glass rounded-3xl p-6 md:p-8">
                                 <h2 className="text-2xl font-bold text-center mb-6">
                                     ターゲットを選択
@@ -569,9 +606,17 @@ export const Stage3 = ({ stage1Data, onComplete }) => {
                                     </div>
                                 </div>
 
+                                {/* 特殊イベントナラティブ */}
+                                {currentResult.newFollowers >= 200 && (
+                                    <DialogueBox dialogue={STAGE3_NARRATIVE.followerSurge} />
+                                )}
+                                {currentResult.ethicsChange <= -20 && (
+                                    <DialogueBox dialogue={STAGE3_NARRATIVE.trustDrop} />
+                                )}
+
                                 {/* 拡散可視化 */}
-                                <SpreadVisualization 
-                                    result={currentResult} 
+                                <SpreadVisualization
+                                    result={currentResult}
                                     targetInfo={TARGETS[currentResult.target]}
                                 />
 

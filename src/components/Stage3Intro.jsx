@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { TECHNIQUES } from '../data/techniques';
 import { TechniqueTag } from './common/TechniqueTag';
+import { STAGE3INTRO_NARRATIVE } from '../data/narrative';
+import { DialogueBox } from './common/DialogueBox';
 
 export const Stage3Intro = ({ stage3Data, onContinue }) => {
     return (
@@ -13,6 +15,9 @@ export const Stage3Intro = ({ stage3Data, onContinue }) => {
                         <h1 className="text-3xl font-bold mb-2">Stage 2 完了！</h1>
                         <p className="text-gray-400">インフルエンサー体験が終わりました</p>
                     </div>
+
+                    {/* 振り返りセリフ */}
+                    <DialogueBox dialogue={STAGE3INTRO_NARRATIVE.reflection} />
 
                     <div className="bg-white/5 rounded-2xl p-6 mb-8">
                         <div className="grid grid-cols-2 gap-4">
@@ -106,6 +111,11 @@ export const Stage3Intro = ({ stage3Data, onContinue }) => {
                             </div>
                         </div>
                     </div>
+
+                    {/* 第3章への橋渡しセリフ */}
+                    {STAGE3INTRO_NARRATIVE.transition.map((dialogue, i) => (
+                        <DialogueBox key={i} dialogue={dialogue} />
+                    ))}
 
                     <button
                         onClick={onContinue}

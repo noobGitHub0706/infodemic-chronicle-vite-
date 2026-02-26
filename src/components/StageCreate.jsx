@@ -5,6 +5,8 @@ import { STAGE3_POSTS } from '../data/stage3Posts';
 import { TechniqueTag } from './common/TechniqueTag';
 import { SNSPostCard } from './common/SNSPostCard';
 import { shuffle } from '../utils';
+import { STAGECREATE_NARRATIVE } from '../data/narrative';
+import { DialogueBox } from './common/DialogueBox';
 
 export const StageCreate = ({ stage1Data, stage3Data, onComplete }) => {
     const [currentScenario, setCurrentScenario] = useState(0);
@@ -26,7 +28,7 @@ export const StageCreate = ({ stage1Data, stage3Data, onComplete }) => {
                 author: '健康ニュース速報',
                 authorHandle: '@health_news_jp',
                 content: '【衝撃】最新調査で判明！\n87%の子供がスマホ依存症に！\n専門家「今すぐ対策を」\n\n子供の将来が心配な方は必見です。\n#拡散希望 #子育て',
-                techniques: ['pseudoscience', 'fear', 'authority']
+                techniques: ['scientific_veneer', 'fear', 'authority']
             },
             steps: [
                 {
@@ -71,7 +73,7 @@ export const StageCreate = ({ stage1Data, stage3Data, onComplete }) => {
                 author: '健康科学研究所',
                 authorHandle: '@health_science_lab',
                 content: '【公式発表】当研究所の調査により、\nデジタルデトックスが睡眠の質を\n40%改善することが判明しました。\n\n詳細はプロフィールのリンクから。\n#研究成果 #睡眠改善',
-                techniques: ['authority', 'pseudoscience']
+                techniques: ['authority', 'scientific_veneer']
             },
             steps: [
                 {
@@ -116,7 +118,7 @@ export const StageCreate = ({ stage1Data, stage3Data, onComplete }) => {
                 author: '真実を伝える会',
                 authorHandle: '@truth_teller_jp',
                 content: '【緊急拡散】テレビでは報道されない真実\n\nハーバード大学の研究チームが発表！\n5G電波がウイルスを活性化させる\nことが判明。\n\n大手メディアは利権のため隠蔽中。\n気づいた人だけシェアしてください。',
-                techniques: ['authority', 'pseudoscience', 'polarization', 'fear']
+                techniques: ['authority', 'scientific_veneer', 'cherry_picking', 'fear']
             },
             steps: [
                 {
@@ -300,6 +302,12 @@ export const StageCreate = ({ stage1Data, stage3Data, onComplete }) => {
                                         </h2>
                                         <p className="text-gray-400">以下の投稿を検証してください</p>
                                     </div>
+
+                                    {/* ナラティブ */}
+                                    {currentScenario === 0 && (
+                                        <DialogueBox dialogue={STAGECREATE_NARRATIVE.stageStart} />
+                                    )}
+                                    <DialogueBox dialogue={STAGECREATE_NARRATIVE.scenarioIntros[currentScenario]} />
 
                                     {/* 投稿表示 */}
                                     <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">

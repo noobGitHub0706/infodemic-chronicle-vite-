@@ -26,7 +26,7 @@ export const STAGE3_POSTS = [
                     account: '健康情報メディア',
                     accountId: '@health_media_jp',
                     text: '【健康情報】\n米国の有名大学の研究チームによると\n適度なデジタルデトックスが\n睡眠の質を改善する可能性があるとのこと\n\n詳しくはプロフのリンクから📲\n\n#デジタルデトックス #睡眠改善',
-                    techniques: ['authority', 'pseudoscience'],
+                    techniques: ['authority', 'scientific_veneer'],
                     influence: 25,
                     ethics: -15,
                     targetEffects: { anxious_parents: 1.4, youth: 0.7, elderly: 1.8 }
@@ -39,7 +39,7 @@ export const STAGE3_POSTS = [
                     account: 'トレンドハンター📊',
                     accountId: '@trend_hunter_jp',
                     text: 'ショート動画で見たんだけど\n\n今Z世代の間で\nあえてガラケー使うのが流行ってるらしい\n\n海外セレブもスマホやめてて\nこれ絶対キてる🔥\n\n乗り遅れたくない人はフォローしといて',
-                    techniques: ['bandwagon'],
+                    techniques: ['social_proof'],
                     influence: 30,
                     ethics: -15,
                     targetEffects: { anxious_parents: 1.0, youth: 1.8, elderly: 0.8 }
@@ -72,7 +72,7 @@ export const STAGE3_POSTS = [
                     account: '真実を語る🔔',
                     accountId: '@truth_speaker_jp',
                     text: 'なぜマスコミは報じないのか\n\nスマホ業界と政府は繋がってる\n都合の悪い研究は隠蔽される\n\n気づいてる人だけフォローしてください\n気づいてない人は関わらないで\n\n#真実 #目覚めよ',
-                    techniques: ['polarization', 'fear'],
+                    techniques: ['cherry_picking', 'fear'],
                     influence: 40,
                     ethics: -30,
                     targetEffects: { anxious_parents: 1.5, youth: 1.6, elderly: 1.2 }
@@ -82,7 +82,7 @@ export const STAGE3_POSTS = [
                     account: '健康研究データ🔬',
                     accountId: '@health_data_lab',
                     text: '独自調査の結果を公開します👀\n\n【デトックス効果】\n・集中力向上 89%\n・睡眠改善 76%\n・ストレス軽減 82%\n\n※n=38 当アカウント調べ\n\nこれでも効果ないって言えますか？',
-                    techniques: ['pseudoscience'],
+                    techniques: ['scientific_veneer'],
                     influence: 28,
                     ethics: -20,
                     targetEffects: { anxious_parents: 1.4, youth: 0.8, elderly: 1.7 }
@@ -115,7 +115,7 @@ export const STAGE3_POSTS = [
                     account: '覚醒者コミュニティ',
                     accountId: '@awakened_community',
                     text: 'デジタルデトックスを笑う人へ\n\nあなたたちは企業に洗脳されてるだけ\n\n真実から目を背けるのは自由だけど\n後悔しても知らないよ？\n\n覚悟ができた人だけついてきて',
-                    techniques: ['polarization'],
+                    techniques: ['cherry_picking'],
                     influence: 32,
                     ethics: -22,
                     targetEffects: { anxious_parents: 1.2, youth: 1.4, elderly: 1.1 }
@@ -148,7 +148,7 @@ export const STAGE3_POSTS = [
                     account: 'ムーブメント速報',
                     accountId: '@movement_news_jp',
                     text: '🎉フォロワー10万人突破記念🎉\n\nこのムーブメントは止まらない\n\n世界中で100万人が参加\n日本でもトレンド入り\n\n時代に取り残されたくなければ\n今すぐフォロー\n\nRT数だけ真実が広まる🔄',
-                    techniques: ['bandwagon', 'fear'],
+                    techniques: ['social_proof', 'fear'],
                     influence: 36,
                     ethics: -25,
                     targetEffects: { anxious_parents: 1.3, youth: 2.0, elderly: 1.0 }

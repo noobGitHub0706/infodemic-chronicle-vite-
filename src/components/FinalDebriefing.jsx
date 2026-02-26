@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { TECHNIQUES } from '../data/techniques';
 import { TechniqueTag } from './common/TechniqueTag';
+import { DEBRIEF_NARRATIVE } from '../data/narrative';
+import { DialogueBox } from './common/DialogueBox';
 
 export const FinalDebriefing = ({ stage1Data, stage3Data, stageCreateData, onRestart, onShowData, onContinueToSurvey }) => {
+    const [closingIndex, setClosingIndex] = useState(0);
+    const [closingDone, setClosingDone] = useState(false);
+
+    const closing = DEBRIEF_NARRATIVE.closing;
+
     const totalTechniquesUsed = stage3Data.results.reduce((acc, r) => acc + r.post.techniques.length, 0);
     const ethicalPosts = stage3Data.results.filter(r => r.post.techniques.length === 0).length;
     
@@ -149,6 +156,59 @@ export const FinalDebriefing = ({ stage1Data, stage3Data, stageCreateData, onRes
     };
     
     const { totalReach, totalBelievers } = calculateTotalImpact();
+
+    // --- エピローグクロージングシーケンス ---
+    if (!closingDone) {
+        return (
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="max-w-2xl w-full animate-fade-in">
+                    <div className="glass rounded-3xl p-8 md:p-10">
+                        <div className="flex justify-between items-center mb-6">
+                            <div className="text-sm font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                                エピローグ
+                            </div>
+                            <button
+                                onClick={() => setClosingDone(true)}
+                                className="text-xs text-gray-500 hover:text-gray-300 transition-colors px-3 py-1 rounded-full bg-white/5 hover:bg-white/10"
+                            >
+                                スキップ →
+                            </button>
+                        </div>
+
+                        <div className="min-h-36">
+                            <DialogueBox dialogue={closing[closingIndex]} />
+                        </div>
+
+                        <div className="flex items-center justify-between mt-6">
+                            <div className="flex gap-1.5">
+                                {closing.map((_, i) => (
+                                    <div
+                                        key={i}
+                                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                                            i === closingIndex ? 'bg-indigo-400 w-6' :
+                                            i < closingIndex ? 'bg-indigo-700 w-3' : 'bg-white/20 w-3'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                            <button
+                                onClick={() => {
+                                    if (closingIndex < closing.length - 1) {
+                                        setClosingIndex(prev => prev + 1);
+                                    } else {
+                                        setClosingDone(true);
+                                    }
+                                }}
+                                className="btn-primary text-white font-bold py-3 px-8 rounded-2xl"
+                            >
+                                {closingIndex < closing.length - 1 ? '次へ →' : '結果を見る →'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen p-4 flex items-center justify-center">
