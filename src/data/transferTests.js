@@ -34,14 +34,14 @@ export const TRANSFER_TEST_SETS = {
             explanation: '一人の知人のケースから「みんなも気をつけて」と恐怖を広げています。ビタミンDの過剰摂取リスクは実在しますが、適切な用量での使用まで否定する恐怖訴求です。'
         },
 
-        // --- A2: 権威訴求 + 科学的装い（フォーマル） ---
+        // --- A2: 権威訴求 + 根拠の捏造・歪曲（フォーマル） ---
         {
             id: 'A2',
             account: '日本栄養科学研究機構',
             accountId: '@nutrition_sci_jp',
             style: 'formal',
             text: '【研究報告】腸内フローラと免疫機能に関する新知見\n\n当機構の臨床試験（n=480, 二重盲検法）により、特定の乳酸菌株LB-7が免疫応答を有意に活性化することが確認されました（p<0.01）。\n\n研究を統括した西村主任研究員は「画期的な発見」としています。\n\n当機構開発のサプリメントは公式サイトからお求めいただけます。',
-            techniques: ['authority', 'scientific_veneer'],
+            techniques: ['authority', 'fabricated_evidence'],
             manipulative: true,
             explanation: '研究機関・統計用語・p値で科学的権威を装っていますが、研究機関自体が商品の販売元であり、利益相反があります。査読付き論文の公表も示されていません。'
         },
@@ -82,14 +82,14 @@ export const TRANSFER_TEST_SETS = {
             explanation: '制度の違いを客観的に説明し、特定の商品や行動を推奨していません。「不明な点は専門家に」と適切な案内をしています。'
         },
 
-        // --- A6: 選択的提示（フォーマル） ---
+        // --- A6: 根拠の捏造・歪曲（フォーマル） ---
         {
             id: 'A6',
             account: '健康食品の真実',
             accountId: '@health_food_truth',
             style: 'formal',
             text: '【知られざる事実】マルチビタミンの危険性\n\n2023年の大規模コホート研究（対象39万人）で、マルチビタミンサプリメントの日常的な摂取と死亡リスクの間に正の相関が確認されました。\n\n特に脂溶性ビタミン（A, D, E, K）の過剰摂取は肝機能障害のリスクを高めます。\n\nそれでもあなたはサプリを飲み続けますか。',
-            techniques: ['cherry_picking'],
+            techniques: ['fabricated_evidence'],
             manipulative: true,
             explanation: '実在する可能性のある研究を引用していますが、「正の相関」は因果関係ではなく、交絡因子の可能性を無視しています。サプリの有益性を示す研究を一切省き、一方的に危険性だけを提示しています。'
         },
@@ -135,14 +135,14 @@ export const TRANSFER_TEST_SETS = {
             explanation: '体験談をもとに「食べる毒」「8割は小麦が原因」と根拠なく恐怖を煽り、即座の行動を促しています。セリアック病以外でグルテンが有害である科学的根拠は限定的です。'
         },
 
-        // --- B2: 権威訴求 + 選択的提示（フォーマル） ---
+        // --- B2: 権威訴求 + 根拠の捏造・歪曲（フォーマル） ---
         {
             id: 'B2',
             account: '予防医学アカデミー',
             accountId: '@preventive_med_ac',
             style: 'formal',
             text: '【スタンフォード大学 最新研究レビュー】\n\n加工食品の摂取量と各種疾患リスクの関連を調べた研究をまとめました。\n\n✅ 心疾患リスク: +31%\n✅ 2型糖尿病リスク: +24%\n✅ 大腸がんリスク: +18%\n\n（加工食品を1日3食以上摂取する群 vs 1食以下の群）\n\n当アカデミー推奨の食事プログラムで根本的な改善を。\n無料カウンセリングはプロフから📩',
-            techniques: ['authority', 'cherry_picking'],
+            techniques: ['authority', 'fabricated_evidence'],
             manipulative: true,
             explanation: '「スタンフォード大学」の権威で信頼性を演出し、リスク上昇だけを示して予防的な食事の効果は言及していません。最終的に自社プログラムへの誘導があります。'
         },
@@ -159,14 +159,14 @@ export const TRANSFER_TEST_SETS = {
             explanation: '「一般的に推奨されていない」と慎重な表現を使い、例外（アレルギー等）にも言及しています。特定の食事法を否定も肯定もせず、個別相談を促す適切な情報提供です。'
         },
 
-        // --- B4: 科学的装い + 社会的証明（カジュアル） ---
+        // --- B4: 根拠の捏造・歪曲 + 社会的証明（カジュアル） ---
         {
             id: 'B4',
             account: 'ともき🧪栄養ハッカー',
             accountId: '@tomoki_nutrition',
             style: 'casual',
             text: '自分の血液検査データ3年分を分析してみた\n\nビタミンD + マグネシウム + オメガ3の\n3種類を毎日飲み始めてから\n\n炎症マーカー(CRP): 0.8→0.2\n空腹時血糖: 102→89\nHbA1c: 5.8→5.3\n\nしかもTwitterのサプリ仲間400人に聞いたら\n7割以上が「数値改善した」って回答\n\nこのスタック最強すぎない？',
-            techniques: ['scientific_veneer', 'social_proof'],
+            techniques: ['fabricated_evidence', 'social_proof'],
             manipulative: true,
             explanation: '医学的数値を並べて科学的に見せていますが、自分1人の変化は対照群もなく因果関係を示せません。SNSのフォロワーアンケートは科学的調査ではありません。'
         },
@@ -183,16 +183,16 @@ export const TRANSFER_TEST_SETS = {
             explanation: '健康上の悩みを率直に共有し、サプリへの抵抗感も正直に述べています。特定の選択肢を推していおらず、他者の経験を聞く開かれた姿勢です。'
         },
 
-        // --- B6: 証言利用 + 科学的装い（カジュアル） ---
+        // --- B6: 証言利用 + 根拠の捏造・歪曲（カジュアル） ---
         {
             id: 'B6',
             account: 'かな🌿アーユルヴェーダ実践中',
             accountId: '@kana_ayurveda',
             style: 'casual',
             text: 'ターメリックラテ飲み始めて半年の記録\n\n自分で計測した数値\n・関節の痛みスコア（自己評価）: 8/10 → 3/10\n・朝の倦怠感: 毎日 → 週1-2回\n・風邪をひいた回数: 4回/半年 → 1回/半年\n\nクルクミンの抗炎症作用は\n1,200以上の論文で報告されてるし\n\n私だけじゃなくてコミュニティの仲間も\nみんな同じ効果実感してる✨',
-            techniques: ['testimonial', 'scientific_veneer'],
+            techniques: ['testimonial', 'fabricated_evidence'],
             manipulative: true,
-            explanation: '自己評価による数値を科学的データのように提示し（科学的装い）、自身とコミュニティの体験談（証言利用）で補強しています。論文数は効果の証明にはなりません。'
+            explanation: '自己評価による数値を科学的データのように提示し（根拠の捏造・歪曲）、自身とコミュニティの体験談（証言利用）で補強しています。論文数は効果の証明にはなりません。'
         },
 
         // --- B7: 非操作的・フォーマル（批判的だが適切） ---
@@ -236,15 +236,15 @@ export const TRANSFER_TEST_SETS = {
 //   - 操作的5問 + 非操作的3問
 //   - 文体: カジュアル4問 + フォーマル4問
 //   - 単体技法2問 + 複合技法3問（操作的投稿のうち）
-//   - 全6技法が最低1回出現
+//   - 全5技法が最低1回出現
 //
 // セットAの技法分布:
-//   fear: 2回, authority: 1回, scientific_veneer: 1回,
-//   testimonial: 1回, cherry_picking: 1回, social_proof: 2回
+//   fear: 2回, authority: 1回, fabricated_evidence: 2回（A2+A6）,
+//   testimonial: 1回, social_proof: 2回
 //
 // セットBの技法分布:
-//   fear: 2回, authority: 1回, scientific_veneer: 2回,
-//   testimonial: 2回, cherry_picking: 1回, social_proof: 2回
+//   fear: 2回, authority: 1回, fabricated_evidence: 3回（B2+B4+B6）,
+//   testimonial: 2回, social_proof: 2回
 //
 // リカート尺度（TransferTest.jsx 既存仕様）:
 //   1（全く操作的でない）〜 7（非常に操作的である）
